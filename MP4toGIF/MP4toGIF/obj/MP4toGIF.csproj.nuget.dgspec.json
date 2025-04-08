@@ -53,6 +53,18 @@
             "AnimatedGif": {
               "target": "Package",
               "version": "[1.0.5, )"
+            },
+            "OpenCvSharp4": {
+              "target": "Package",
+              "version": "[4.10.0.20241108, )"
+            },
+            "OpenCvSharp4.Extensions": {
+              "target": "Package",
+              "version": "[4.10.0.20241108, )"
+            },
+            "OpenCvSharp4.runtime.win": {
+              "target": "Package",
+              "version": "[4.10.0.20241108, )"
             }
           },
           "imports": [

@@ -1,6 +1,6 @@
 ﻿namespace MP4toGIF
 {
-    partial class Form1
+    partial class MP4toGIF
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,12 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            UI_lbl_main = new Label();
+            SuspendLayout();
+            // 
+            // UI_lbl_main
+            // 
+            UI_lbl_main.AutoSize = true;
+            UI_lbl_main.Font = new Font("Arial Narrow", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            UI_lbl_main.Location = new Point(44, 103);
+            UI_lbl_main.Name = "UI_lbl_main";
+            UI_lbl_main.Size = new Size(288, 57);
+            UI_lbl_main.TabIndex = 0;
+            UI_lbl_main.Text = "Drop mp4 here";
+            // 
+            // MP4toGIF
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(384, 261);
+            Controls.Add(UI_lbl_main);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            Name = "MP4toGIF";
+            Text = "MP4toGif";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label UI_lbl_main;
     }
 }
