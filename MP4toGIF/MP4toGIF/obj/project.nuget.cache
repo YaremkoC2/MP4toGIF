@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "e34QYM8s95s=",
+  "dgSpecHash": "ksnpNhtYqdg=",
   "success": true,
   "projectFilePath": "C:\\Users\\cole\\Documents\\My Code\\MP4toGIF\\MP4toGIF\\MP4toGIF\\MP4toGIF\\MP4toGIF.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\cole\\.nuget\\packages\\animatedgif\\1.0.5\\animatedgif.1.0.5.nupkg.sha512",
+    "C:\\Users\\cole\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\cole\\.nuget\\packages\\microsoft.win32.systemevents\\4.5.0\\microsoft.win32.systemevents.4.5.0.nupkg.sha512",
+    "C:\\Users\\cole\\.nuget\\packages\\system.drawing.common\\4.5.0\\system.drawing.common.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }
