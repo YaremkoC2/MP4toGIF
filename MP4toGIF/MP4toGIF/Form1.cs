@@ -120,11 +120,20 @@ namespace MP4toGIF
                 }
                 catch (Exception ex)
                 {
+                    // make the color red and show the error message
                     BackColor = Color.FromArgb(255, 181, 65, 65);
                     MessageBox.Show(ex.Message);
                 }
                 finally
                 {
+                    // final clean up and restore back color
+                    foreach (var bmp in bitmaps)
+                        bmp.Dispose();
+                    bitmaps.Clear();
+
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+
                     BackColor = SystemColors.Control;
                 }
             }
