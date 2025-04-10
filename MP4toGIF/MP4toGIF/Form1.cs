@@ -23,8 +23,6 @@ namespace MP4toGIF
 {
     public partial class MP4toGIF : Form
     {
-        string? mainFileName;  // store the file name of the first dropped file
-
         public MP4toGIF()
         {
             InitializeComponent();
@@ -59,11 +57,12 @@ namespace MP4toGIF
 
         void MP4toGIF_DragDrop(object? sender, DragEventArgs e)
         {
+            string mainFileName;  // store the file name of the first dropped file
+
             // take the first dropped file only
             string[]? files = e.Data.GetData(DataFormats.FileDrop) as string[];
             if (files?.Length > 0)
             {
-                // only take the first file
                 mainFileName = files[0];
 
                 // if the file is not an mp4 tell the user and return
@@ -71,7 +70,6 @@ namespace MP4toGIF
                 {
                     BackColor = Color.FromArgb(255, 181, 65, 65);
                     MessageBox.Show("Please drop an mp4");
-                    mainFileName = null;
                     BackColor = SystemColors.Control;
                     return;
                 }
@@ -84,7 +82,6 @@ namespace MP4toGIF
                     {
                         BackColor = Color.FromArgb(255, 181, 65, 65);
                         MessageBox.Show("Failed to open video...");
-                        mainFileName = null;
                         BackColor = SystemColors.Control;
                         return;
                     }
