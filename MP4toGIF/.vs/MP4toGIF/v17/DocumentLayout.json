@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{511AEA85-7131-4593-B60B-D280C150CD21}|MP4toGIF\\MP4toGIF.csproj|solutionrelative:mp4togif\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{511AEA85-7131-4593-B60B-D280C150CD21}|MP4toGIF\\MP4toGIF.csproj|c:\\users\\cole\\documents\\my code\\mp4togif\\mp4togif\\mp4togif\\mp4togif\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{511AEA85-7131-4593-B60B-D280C150CD21}|MP4toGIF\\MP4toGIF.csproj|C:\\Users\\cole\\Documents\\My Code\\MP4toGIF\\MP4toGIF\\MP4toGIF\\mp4togif\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{511AEA85-7131-4593-B60B-D280C150CD21}|MP4toGIF\\MP4toGIF.csproj|solutionrelative:mp4togif\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -28,7 +28,7 @@
               "RelativeDocumentMoniker": "MP4toGIF\\Form1.cs",
               "ToolTip": "C:\\Users\\cole\\Documents\\My Code\\MP4toGIF\\MP4toGIF\\MP4toGIF\\MP4toGIF\\Form1.cs",
               "RelativeToolTip": "MP4toGIF\\Form1.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAwwEQAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAAAD0AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-08T14:51:01.614Z",
               "EditorCaption": ""
@@ -42,8 +42,7 @@
               "ToolTip": "C:\\Users\\cole\\Documents\\My Code\\MP4toGIF\\MP4toGIF\\MP4toGIF\\MP4toGIF\\Form1.cs [Design]",
               "RelativeToolTip": "MP4toGIF\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T14:50:38.284Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-04-08T14:50:38.284Z"
             }
           ]
         }

@@ -24,7 +24,6 @@ namespace MP4toGIF
     public partial class MP4toGIF : Form
     {
         string? mainFileName;  // store the file name of the first dropped file
-        List<Bitmap> bitmaps;  // stores the frames of the video
 
         public MP4toGIF()
         {
@@ -35,9 +34,6 @@ namespace MP4toGIF
             DragEnter += new DragEventHandler(MP4toGIF_DragEnter);
             DragDrop += new DragEventHandler(MP4toGIF_DragDrop);
             DragLeave += new EventHandler(MP4toGIF_DragLeave);
-
-            // initialize
-            bitmaps = new List<Bitmap>();
         }
 
         void MP4toGIF_DragEnter(object? sender, DragEventArgs e)
@@ -93,28 +89,25 @@ namespace MP4toGIF
                         return;
                     }
 
-                    // Read the video and convert frames to bitmap
-                    Mat frame = new Mat();
-                    while (capture.Read(frame))
-                    {
-                        if (frame.Empty()) break;
-
-                        // Convert Mat to Bitmap and add to list
-                        Bitmap bitmap = OpenCvSharp.Extensions.BitmapConverter.ToBitmap(frame);
-                        bitmaps.Add(bitmap);
-                    }
-
                     // Get the new file name and frame delay
                     string gifFileName = Path.ChangeExtension(mainFileName, ".gif");
                     double fps = capture.Fps;
                     int delayMs = (int)(1000.0 / fps);
 
-                    // convert the bitmaps to a gif
+                    // Convert the video frames to a gif
                     using (var gif = AnimatedGif.AnimatedGif.Create(gifFileName, delayMs))
                     {
-                        foreach (var bitmap in bitmaps)
+                        Mat frame = new Mat();
+                        while (capture.Read(frame))
                         {
+                            if (frame.Empty()) break;
+
+                            // Convert Mat to Bitmap
+                            Bitmap bitmap = OpenCvSharp.Extensions.BitmapConverter.ToBitmap(frame);
+
+                            // Add frame to the GIF and dispose of the bitmap immediately
                             gif.AddFrame(bitmap, delay: -1, quality: GifQuality.Bit8);
+                            bitmap.Dispose();
                         }
                     }
                 }
@@ -127,13 +120,8 @@ namespace MP4toGIF
                 finally
                 {
                     // final clean up and restore back color
-                    foreach (var bmp in bitmaps)
-                        bmp.Dispose();
-                    bitmaps.Clear();
-
                     GC.Collect();
                     GC.WaitForPendingFinalizers();
-
                     BackColor = SystemColors.Control;
                 }
             }
