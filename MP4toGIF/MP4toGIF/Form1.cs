@@ -18,6 +18,7 @@ using System.IO;
 using System.Diagnostics;
 using AnimatedGif;
 using OpenCvSharp;
+using System.Threading;
 
 namespace MP4toGIF
 {
@@ -74,53 +75,70 @@ namespace MP4toGIF
                     return;
                 }
 
+                // run the conversion in the background
                 try
                 {
-                    // Open the video or tell the user it's failed
-                    using var capture = new VideoCapture(mainFileName);
-                    if (!capture.IsOpened())
-                    {
-                        BackColor = Color.FromArgb(255, 181, 65, 65);
-                        MessageBox.Show("Failed to open video...");
-                        BackColor = SystemColors.Control;
-                        return;
-                    }
-
-                    // Get the new file name and frame delay
-                    string gifFileName = Path.ChangeExtension(mainFileName, ".gif");
-                    double fps = capture.Fps;
-                    int delayMs = (int)(1000.0 / fps);
-
-                    // Convert the video frames to a gif
-                    using (var gif = AnimatedGif.AnimatedGif.Create(gifFileName, delayMs))
-                    {
-                        Mat frame = new Mat();
-                        while (capture.Read(frame))
-                        {
-                            if (frame.Empty()) break;
-
-                            // Convert Mat to Bitmap
-                            Bitmap bitmap = OpenCvSharp.Extensions.BitmapConverter.ToBitmap(frame);
-
-                            // Add frame to the GIF and dispose of the bitmap immediately
-                            gif.AddFrame(bitmap, delay: -1, quality: GifQuality.Bit8);
-                            bitmap.Dispose();
-                        }
-                    }
+                    Thread thread = new Thread(new ParameterizedThreadStart(ConvertVideoToGif));
+                    thread.IsBackground = true;  
+                    thread.Start(mainFileName);
                 }
                 catch (Exception ex)
                 {
-                    // make the color red and show the error message
-                    BackColor = Color.FromArgb(255, 181, 65, 65);
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Error: " + ex.Message);
                 }
-                finally
+            }
+        }
+
+        private void ConvertVideoToGif(object? obj)
+        {
+            if (!(obj is string mainFileName)) return;  // make sure it's a string
+
+            try
+            {
+                // Open the video or tell the user it's failed
+                using var capture = new VideoCapture(mainFileName);
+                if (!capture.IsOpened())
                 {
-                    // final clean up and restore back color
-                    GC.Collect();
-                    GC.WaitForPendingFinalizers();
-                    BackColor = SystemColors.Control;
+                    throw new Exception("Failed to open video...");
                 }
+
+                // Get the new file name and frame delay
+                string gifFileName = Path.ChangeExtension(mainFileName, ".gif");
+                double fps = capture.Fps;
+                int delayMs = (int)(1000.0 / fps);
+
+                // Convert the video frames to a gif
+                using (var gif = AnimatedGif.AnimatedGif.Create(gifFileName, delayMs))
+                {
+                    Mat frame = new Mat();
+                    while (capture.Read(frame))
+                    {
+                        if (frame.Empty()) break;
+
+                        // Convert Mat to Bitmap
+                        Bitmap bitmap = OpenCvSharp.Extensions.BitmapConverter.ToBitmap(frame);
+
+                        // Add frame to the GIF and dispose of the bitmap immediately
+                        gif.AddFrame(bitmap, delay: -1, quality: GifQuality.Bit8);
+                        bitmap.Dispose();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // make the color red and show the error message
+                Invoke(new Action(() =>
+                {
+                    BackColor = Color.FromArgb(255, 181, 65, 65);
+                    MessageBox.Show("Error during conversion: " + ex.Message);
+                }));
+            }
+            finally
+            {
+                // final clean up and restore back color
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                Invoke(new Action(() => BackColor = SystemColors.Control));
             }
         }
     }

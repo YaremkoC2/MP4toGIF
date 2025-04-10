@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MP4toGIF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce3b4558d818241085af069ce64c371e25ce3262")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb9ce258022d8bc824c5bc8f4bab7a7f450efa2b")]
 [assembly: System.Reflection.AssemblyProductAttribute("MP4toGIF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MP4toGIF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
